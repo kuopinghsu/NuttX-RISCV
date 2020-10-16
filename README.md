@@ -40,10 +40,18 @@
     $ cd ${CURDIR}/nuttx/
     $ ./tools/configure.sh hifive1-revb:nsh
     $ make menuconfig
+
+Select "System Type"->"FE310 Chip Seletion"->"FE310_QEMU", and then make.
+
     $ make
 
 ## Run qemu
 
     $ cd ${CURDIR}/nuttx
     $ qemu-system-riscv32 -nographic -machine sifive_e -kernel ./nuttx
+
+## Debug with gdb
+
+    $ qemu-system-riscv32 -s -S -nographic -machine sifive_e -kernel ./nuttx
+    $ riscv64-unknown-elf-gdb ./nuttx -ex "target remote localhost:1234"
 
